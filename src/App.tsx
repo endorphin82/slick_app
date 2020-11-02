@@ -8,6 +8,8 @@ import './App.css';
 function App() {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
+  const [goTo, setGoTo] = useState();
+
   // const slider1 = useRef();
   // const slider2 = useRef();
 
@@ -28,7 +30,8 @@ function App() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1000,
-    asNavFor: nav2
+    asNavFor: nav2,
+   
     // asNavFor: ".bottom-slider"
   };
   const settings2 = {
@@ -51,9 +54,16 @@ function App() {
 
   };
 
-  const onMouseEnterHandler = (e: any) => {
-    console.log(e?.currTarget?.data)
-    const currTarget = e.currentTarget
+  // const onMouseEnterHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const onMouseEnterHandler = (e: number) => {
+
+    // e.currentTarget
+    // e.stopPropagation()
+    // console.log(e.target)
+console.log(nav1)
+//@ts-ignore
+nav2.slickGoto(e)
+    // const currTarget = e.currentTarget
     // const index = currTarget.data('slick-index')
     // const slickObj = document.getElementsByClassName("top-slider")
     // .slick('getSlick')
@@ -70,13 +80,13 @@ function App() {
         ref={slider => setNav1(slider)}
 
       >
-        <div onMouseEnter={(e) => onMouseEnterHandler(e)}>
+        <div onMouseEnter={() => onMouseEnterHandler(0)}>
           <h3>1</h3>
         </div>
-        <div>
+        <div onMouseEnter={() => onMouseEnterHandler(1)}>
           <h3>2</h3>
         </div>
-        <div>
+        <div onMouseEnter={() => onMouseEnterHandler(2)}>
           <h3>3</h3>
         </div>
 
