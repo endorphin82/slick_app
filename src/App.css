@@ -37,18 +37,6 @@
   }
 }
 
-/*//*/
-/*//.flex{*/
-/*//  display:flex;*/
-/*//  background-color: #aaa;*/
-/*//*/
-/*//}*/
-/*//.flex__column{*/
-/*//  min-width: 0;*/
-/*//  background-color: #bbb;*/
-/*//*/
-/*//  //width: 100px;*/
-/*//}*/
 .slick-slider {
   min-width: 0;
   background-color: #ccc;

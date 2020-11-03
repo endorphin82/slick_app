@@ -1,22 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import Slider from 'react-slick';
 
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import './App.css';
 
 function App() {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
-  const [goTo, setGoTo] = useState();
-
-  // const slider1 = useRef();
-  // const slider2 = useRef();
-
-  // useEffect(() => {
-  //   setNav1(slider1);
-  //   setNav2(slider2);
-  // }, [slider1, slider2]);
 
   const settings1 = {
     pauseOnHover: true,
@@ -31,12 +20,9 @@ function App() {
     autoplay: true,
     autoplaySpeed: 1000,
     asNavFor: nav2,
-   
-    // asNavFor: ".bottom-slider"
   };
+
   const settings2 = {
-    // pauseOnHover:true,
-    // pauseOnDotsHover:true,
     slidesToShow: 1,
     className: "bottom-slider",
     arrows: false,
@@ -48,26 +34,15 @@ function App() {
     slidesToScroll: 1,
     asNavFor: nav1,
     useCSS: true,
-    // rtl:true,
-    // fade: true,
-    // easing: "sliding-vertically"
-
   };
 
-  // const onMouseEnterHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const onMouseEnterHandler = (e: number) => {
+  const onMouseEnterHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 
-    // e.currentTarget
-    // e.stopPropagation()
-    // console.log(e.target)
-console.log(nav1)
-//@ts-ignore
-nav2.slickGoto(e)
-    // const currTarget = e.currentTarget
-    // const index = currTarget.data('slick-index')
-    // const slickObj = document.getElementsByClassName("top-slider")
-    // .slick('getSlick')
-    // slickObj.slickGoTo(index);
+    const divParent = e.currentTarget.parentElement
+    // @ts-ignore
+    const sliderIndex = divParent.parentElement.getAttribute("data-index")
+    // @ts-ignore
+    nav1.slickGoTo(Number(sliderIndex), true)
 
   }
   return (
@@ -80,13 +55,13 @@ nav2.slickGoto(e)
         ref={slider => setNav1(slider)}
 
       >
-        <div onMouseEnter={() => onMouseEnterHandler(0)}>
+        <div onMouseEnter={(e) => onMouseEnterHandler(e)}>
           <h3>1</h3>
         </div>
-        <div onMouseEnter={() => onMouseEnterHandler(1)}>
+        <div onMouseEnter={(e) => onMouseEnterHandler(e)}>
           <h3>2</h3>
         </div>
-        <div onMouseEnter={() => onMouseEnterHandler(2)}>
+        <div onMouseEnter={(e) => onMouseEnterHandler(e)}>
           <h3>3</h3>
         </div>
 
@@ -98,13 +73,13 @@ nav2.slickGoto(e)
         ref={slider => setNav2(slider)}
       >
         <div>
-          <h3>1</h3>
+          <h3>To reach maximum potential sales and growth, you must invest in professionals!</h3>
         </div>
         <div>
-          <h3>2</h3>
+          <h3> </h3>
         </div>
         <div>
-          <h3>3</h3>
+          <h3>5+ years experience! 50+ E-commerce stores! A+ Class software developers</h3>
         </div>
       </Slider>
     </>
